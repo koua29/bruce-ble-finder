@@ -1,5 +1,9 @@
 # 📡 BLE Finder — traqueur de proximité Bluetooth pour Bruce
 
+[![Bruce firmware](https://img.shields.io/badge/firmware-Bruce-8A2BE2?logo=github)](https://github.com/BruceDevices/firmware) [![Device](https://img.shields.io/badge/device-LilyGO%20T--Embed%20CC1101-1E90FF)](https://github.com/BruceDevices/firmware) [![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
+
+> **EN** — A BLE proximity radar written in JavaScript for the **[Bruce firmware](https://github.com/BruceDevices/firmware)** (LilyGO T-Embed CC1101). Pick a Bluetooth device and the screen guides you like a metal detector: the blip grows and turns red→green as you get closer, with a **HOTTER / COLDER** hint at each step.
+
 Script **JavaScript** pour le firmware **[Bruce](https://github.com/BruceDevices/firmware)** (testé sur **LilyGO T-Embed CC1101**). Il transforme l'appareil en **radar de proximité BLE** : choisis un périphérique Bluetooth, puis l'écran te guide comme un détecteur — **plus tu t'approches, plus le blip grossit et passe du rouge au vert**, avec un indicateur **« PLUS CHAUD / PLUS FROID »** à chaque pas.
 
 ![BLE Finder sur T-Embed CC1101](docs/hero.jpg)
