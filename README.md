@@ -63,4 +63,4 @@ Si ce script te plaît :
 
 ## 📄 Licence
 
-MIT — voir [LICENSE](LICENSE). Par **koua29** (Arnaud).
+MIT — voir [LICENSE](LICENSE). Par **koua29**.
