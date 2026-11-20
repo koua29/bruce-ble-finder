@@ -1,66 +1,92 @@
-# 📡 BLE Finder — traqueur de proximité Bluetooth pour Bruce
+# 📡 BLE Finder — Bluetooth proximity tracker for Bruce
+
+<p align="center">🇺🇸 <b>English</b> · 🇫🇷 <a href="README.fr.md">Français</a></p>
 
 [![Bruce firmware](https://img.shields.io/badge/firmware-Bruce-8A2BE2?logo=github)](https://github.com/BruceDevices/firmware) [![Device](https://img.shields.io/badge/device-LilyGO%20T--Embed%20CC1101-1E90FF)](https://github.com/BruceDevices/firmware) [![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 
-> **EN** — A BLE proximity radar written in JavaScript for the **[Bruce firmware](https://github.com/BruceDevices/firmware)** (LilyGO T-Embed CC1101). Pick a Bluetooth device and the screen guides you like a metal detector: the blip grows and turns red→green as you get closer, with a **HOTTER / COLDER** hint at each step.
+A **JavaScript** script for the **[Bruce](https://github.com/BruceDevices/firmware)** firmware (tested on the **LilyGO T-Embed CC1101**). It turns the device into a **BLE proximity radar**: pick a Bluetooth device, then the screen guides you like a metal detector — **the closer you get, the bigger the blip grows and the more it shifts from red to green**, with a **"HOTTER / COLDER"** hint at every step.
 
-Script **JavaScript** pour le firmware **[Bruce](https://github.com/BruceDevices/firmware)** (testé sur **LilyGO T-Embed CC1101**). Il transforme l'appareil en **radar de proximité BLE** : choisis un périphérique Bluetooth, puis l'écran te guide comme un détecteur — **plus tu t'approches, plus le blip grossit et passe du rouge au vert**, avec un indicateur **« PLUS CHAUD / PLUS FROID »** à chaque pas.
+![BLE Finder on T-Embed CC1101](docs/hero.jpg)
 
-![BLE Finder sur T-Embed CC1101](docs/hero.jpg)
+## ✨ Features
 
-## ✨ Fonctionnalités
+- **Two selection modes**:
+  - **Full list** — scans and shows every BLE device (name + RSSI).
+  - **Search (name / MAC)** — type **part** of a name or MAC address → filters the list → you pick. If it isn't there yet, choose **"wait for it to appear"**.
+- **Sonar radar**: a filling ring gauge, a **central blip** whose size and color (red → yellow → green) reflect proximity, animated sweep.
+- **Live dBm**, zone (`VERY CLOSE` … `VERY FAR`), **hotter/colder** arrow and **signal bars**.
+- Stays in **"searching…"** while the target isn't picked up (handy when it goes out of range and comes back).
 
-- **Deux modes de sélection** :
-  - **Liste complète** — scanne et affiche tous les appareils BLE (nom + RSSI).
-  - **Recherche (nom / MAC)** — tape un **bout** de nom ou d'adresse MAC → filtre la liste → tu choisis. S'il n'est pas encore là, option **« attendre qu'il apparaisse »**.
-- **Radar sonar** : anneau-jauge qui se remplit, **blip central** dont la taille et la couleur (rouge → jaune → vert) reflètent la proximité, balayage animé.
-- **dBm en direct**, zone (`TRÈS PROCHE` … `TRÈS LOIN`), flèche **chaud/froid** et **barres de signal**.
-- Reste en **« recherche… »** tant que la cible n'est pas captée (utile si elle est hors de portée puis réapparaît).
+## 🖼️ Preview
 
-## 🖼️ Aperçu
-
-| Radar (proche) | Recherche / hors de portée | Saisie du filtre |
+| Radar (close) | Searching / out of range | Filter input |
 |---|---|---|
 | ![radar](docs/radar.jpg) | ![searching](docs/searching.jpg) | ![search](docs/search.jpg) |
 
 ## 🚀 Installation
 
-1. Copie **`BLE Finder.js`** sur la carte SD, dans un dossier que Bruce lit : **`/BruceJS`**, `/scripts` ou `/BruceScripts`.
-2. Sur l'appareil : **JS Interpreter** → ouvre `BLE Finder.js`.
-3. Choisis un mode, sélectionne ta cible, et promène-toi : le blip chauffe quand tu approches.
-4. **Bouton retour / ESC** pour quitter.
+1. Copy **`BLE Finder.js`** to the SD card, into a folder Bruce reads: **`/BruceJS`**, `/scripts` or `/BruceScripts`.
+2. On the device: **JS Interpreter** → open `BLE Finder.js`.
+3. Pick a mode, select your target and walk around: the blip heats up as you get closer.
+4. **Back button / ESC** to quit.
 
-## ⚙️ Réglages (en tête du script)
+## ⚙️ Settings (top of the script)
 
-- `SCAN_SEC` — durée d'un scan de suivi (défaut 1 s).
-- `LO` / `HI` — plage RSSI (loin → proche, défaut −100 → −35 dBm). Ajuste selon les dBm réels que tu observes.
+- `SCAN_SEC` — length of a tracking scan (default 1 s).
+- `LO` / `HI` — RSSI range (far → close, default −100 → −35 dBm). Adjust to the real dBm values you see.
 
-## 📝 Notes techniques
+## 📝 Technical notes
 
-- Le retour est **100 % à l'écran** : sur Bruce 1.15, l'audio (`audio.tone`) et la LED RGB **ne sont pas pilotables en temps réel depuis un script JS** — le radar visuel est la solution fiable.
-- Les appareils utilisant une **MAC aléatoire** (AirPods, trackers récents) peuvent « sauter » en suivi par adresse ; le suivi par **nom** est alors plus stable.
-- La cible doit **émettre** (advertising) pour être détectée.
+- Feedback is **100% on screen**: on Bruce 1.15, audio (`audio.tone`) and the RGB LED **can't be driven in real time from a JS script** — the visual radar is the reliable option.
+- Devices using a **random MAC** (AirPods, recent trackers) may "jump" when tracked by address; tracking by **name** is then more stable.
+- The target has to be **advertising** to be detected.
 
-## 🖥️ Compatibilité
+## 🖥️ Compatibility
 
-Conçu pour **LilyGO T-Embed CC1101** (écran 320×170) sous **Bruce**. Devrait fonctionner sur d'autres cibles Bruce avec un écran couleur.
+Built for the **LilyGO T-Embed CC1101** (320×170 screen) running **Bruce**. Should work on other Bruce targets with a color screen.
 
-## 🛒 Matériel / Hardware
+## 🛒 Hardware
 
-Accessoires utiles pour ce projet — liens affiliés Amazon :
+*Amazon affiliate links: if you buy through these links, the project earns a small commission at no extra cost to you.*
 
-| [<img src="docs/amazon-B0D45MSMJR.jpg" width="200" alt="Anker 545 power bank (10 000 mAh)">](https://www.amazon.com/dp/B0D45MSMJR?linkCode=ll2&tag=koua29bblefinder-20&ref_=as_li_ss_tl) | [<img src="docs/amazon-B0C1FCZM94.jpg" width="200" alt="433 MHz SMA antenna (2-pack)">](https://www.amazon.com/dp/B0C1FCZM94?linkCode=ll2&tag=koua29bblefinder-20&ref_=as_li_ss_tl) | [<img src="docs/amazon-B0B7NVMBPL.jpg" width="200" alt="SanDisk 64 GB microSD (2-pack)">](https://www.amazon.com/dp/B0B7NVMBPL?linkCode=ll2&tag=koua29bblefinder-20&ref_=as_li_ss_tl) |
-|:---:|:---:|:---:|
-| 🔋 **[Anker 545 power bank (10 000 mAh)](https://www.amazon.com/dp/B0D45MSMJR?linkCode=ll2&tag=koua29bblefinder-20&ref_=as_li_ss_tl)**<br><sub>Pour faire tourner le T-Embed loin d'une prise</sub> | 📡 **[433 MHz SMA antenna (2-pack)](https://www.amazon.com/dp/B0C1FCZM94?linkCode=ll2&tag=koua29bblefinder-20&ref_=as_li_ss_tl)**<br><sub>Antenne sub-GHz pour la radio CC1101</sub> | 💾 **[SanDisk 64 GB microSD (2-pack)](https://www.amazon.com/dp/B0B7NVMBPL?linkCode=ll2&tag=koua29bblefinder-20&ref_=as_li_ss_tl)**<br><sub>Pour les thèmes, scripts et captures Bruce</sub> |
+<table>
+<tr>
+<td align="center" width="33%">
+  <a href="https://www.amazon.com/dp/B0D45MSMJR?linkCode=ll2&amp;tag=koua29bblefinder-20&amp;ref_=as_li_ss_tl"><img src="docs/amazon-B0D45MSMJR.jpg" width="200" alt="Anker 545 power bank (10,000 mAh)"></a><br>
+  <b><a href="https://www.amazon.com/dp/B0D45MSMJR?linkCode=ll2&amp;tag=koua29bblefinder-20&amp;ref_=as_li_ss_tl">Anker 545 power bank (10,000 mAh)</a></b><br><sub>Keeps the T-Embed running away from an outlet</sub>
+</td>
+<td align="center" width="33%">
+  <a href="https://www.amazon.com/dp/B0C1FCZM94?linkCode=ll2&amp;tag=koua29bblefinder-20&amp;ref_=as_li_ss_tl"><img src="docs/amazon-B0C1FCZM94.jpg" width="200" alt="433 MHz SMA antenna (2-pack)"></a><br>
+  <b><a href="https://www.amazon.com/dp/B0C1FCZM94?linkCode=ll2&amp;tag=koua29bblefinder-20&amp;ref_=as_li_ss_tl">433 MHz SMA antenna (2-pack)</a></b><br><sub>Sub-GHz antenna for the CC1101 radio</sub>
+</td>
+<td align="center" width="33%">
+  <a href="https://www.amazon.com/dp/B0B7NVMBPL?linkCode=ll2&amp;tag=koua29bblefinder-20&amp;ref_=as_li_ss_tl"><img src="docs/amazon-B0B7NVMBPL.jpg" width="200" alt="SanDisk 64 GB microSD (2-pack)"></a><br>
+  <b><a href="https://www.amazon.com/dp/B0B7NVMBPL?linkCode=ll2&amp;tag=koua29bblefinder-20&amp;ref_=as_li_ss_tl">SanDisk 64 GB microSD (2-pack)</a></b><br><sub>For Bruce themes, scripts and captures</sub>
+</td>
+</tr>
+</table>
 
-<sub>En tant que Partenaire Amazon, je réalise un bénéfice sur les achats remplissant les conditions requises. · As an Amazon Associate I earn from qualifying purchases.</sub>
+<sub>As an Amazon Associate I earn from qualifying purchases.</sub>
+</td>
+<td align="center" width="33%">
+  <a href="https://www.amazon.com/dp/B0C1FCZM94?linkCode=ll2&tag=koua29bblefinder-20&ref_=as_li_ss_tl"><img src="docs/amazon-B0C1FCZM94.jpg" width="200" alt="433 MHz SMA antenna (2-pack)"></a><br>
+  <b><a href="https://www.amazon.com/dp/B0C1FCZM94?linkCode=ll2&tag=koua29bblefinder-20&ref_=as_li_ss_tl">433 MHz SMA antenna (2-pack)</a></b><br><sub>Sub-GHz antenna for the CC1101 radio</sub>
+</td>
+<td align="center" width="33%">
+  <a href="https://www.amazon.com/dp/B0B7NVMBPL?linkCode=ll2&tag=koua29bblefinder-20&ref_=as_li_ss_tl"><img src="docs/amazon-B0B7NVMBPL.jpg" width="200" alt="SanDisk 64 GB microSD (2-pack)"></a><br>
+  <b><a href="https://www.amazon.com/dp/B0B7NVMBPL?linkCode=ll2&tag=koua29bblefinder-20&ref_=as_li_ss_tl">SanDisk 64 GB microSD (2-pack)</a></b><br><sub>For Bruce themes, scripts and captures</sub>
+</td>
+</tr>
+</table>
 
-## ☕ Un café ?
+<sub>As an Amazon Associate I earn from qualifying purchases.</sub>
 
-Si ce script te plaît :
+## ☕ Buy me a coffee
+
+If you like this script:
 
 <img src="docs/paypal-qr.png" width="180" alt="PayPal" />
 
-## 📄 Licence
+## 📄 License
 
-MIT — voir [LICENSE](LICENSE). Par **koua29**.
+MIT — see [LICENSE](LICENSE). By **koua29**.
